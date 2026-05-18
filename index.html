@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beautiful Betty — Conscious Beauty, Hexham</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+ 
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  :root {
+    --sage: #8a9e87;
+    --sage-light: #c8d5c5;
+    --sage-dark: #5a6e58;
+    --cream: #f7f3ee;
+    --warm-white: #faf8f5;
+    --blush: #e8cfc0;
+    --blush-deep: #c9a48a;
+    --bark: #7a5c44;
+    --bark-light: #a07c60;
+    --charcoal: #2c2823;
+    --stone: #9e9489;
+    --stone-light: #d4cfc8;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Jost', system-ui, sans-serif;
+    --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    font-family: var(--font-sans);
+    background: var(--warm-white);
+    color: var(--charcoal);
+    font-weight: 300;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+ 
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+    transition: background var(--transition), padding var(--transition);
+  }
+  nav.scrolled {
+    background: rgba(250, 248, 245, 0.96);
+    backdrop-filter: blur(12px);
+    padding: 1rem 3rem;
+    border-bottom: 1px solid var(--stone-light);
+  }
+  .nav-logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--warm-white);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+  nav.scrolled .nav-logo { color: var(--charcoal); }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(250,248,245,0.85);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+  nav.scrolled .nav-links a { color: var(--stone); }
+  .nav-links a:hover, nav.scrolled .nav-links a:hover { color: var(--sage-dark); }
+  .nav-book {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    border: 1px solid rgba(250,248,245,0.5);
+    padding: 0.6rem 1.4rem;
+    text-decoration: none;
+    transition: all var(--transition);
+  }
+  nav.scrolled .nav-book {
+    color: var(--charcoal);
+    border-color: var(--stone-light);
+  }
+  .nav-book:hover {
+    background: var(--warm-white);
+    color: var(--charcoal) !important;
+    border-color: var(--warm-white) !important;
+  }
+  nav.scrolled .nav-book:hover {
+    background: var(--charcoal);
+    color: var(--warm-white) !important;
+    border-color: var(--charcoal) !important;
+  }
+ 
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: brightness(0.6);
+    transform: scale(1.05);
+    animation: heroZoom 12s ease-out forwards;
+  }
+  @keyframes heroZoom {
+    to { transform: scale(1); }
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(44,40,35,0.7) 0%, rgba(44,40,35,0.1) 50%, transparent 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 5rem 6rem;
+    max-width: 900px;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--blush);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.5s forwards;
+  }
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.0;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.8s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    font-weight: 300;
+  }
+  .hero-tagline {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(250,248,245,0.8);
+    max-width: 480px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.1s forwards;
+  }
+  .hero-ctas {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.4s forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .btn-primary {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    background: var(--warm-white);
+    padding: 1rem 2.2rem;
+    text-decoration: none;
+    transition: all var(--transition);
+  }
+  .btn-primary:hover {
+    background: var(--sage);
+    color: var(--warm-white);
+  }
+  .btn-ghost {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    border-bottom: 1px solid rgba(250,248,245,0.5);
+    padding-bottom: 2px;
+    text-decoration: none;
+    transition: border-color var(--transition);
+  }
+  .btn-ghost:hover { border-color: var(--warm-white); }
+ 
+  /* ── SECTIONS ── */
+  section { position: relative; }
+ 
+  /* ── MARQUEE ── */
+  .marquee-strip {
+    background: var(--sage);
+    padding: 1rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-flex;
+    gap: 3rem;
+    animation: marquee 30s linear infinite;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-item {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(250,248,245,0.85);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+  .marquee-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--blush);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+ 
+  /* ── PHILOSOPHY ── */
+  .philosophy {
+    background: var(--cream);
+    padding: 9rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+  }
+  .philosophy-text { max-width: 520px; }
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1.5rem;
+  }
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; }
+  .section-body {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: var(--stone);
+    margin-bottom: 1.2rem;
+  }
+  .philosophy-image-wrap {
+    position: relative;
+  }
+  .philosophy-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    display: block;
+  }
+  .philosophy-badge {
+    position: absolute;
+    bottom: -2rem;
+    left: -2rem;
+    background: var(--warm-white);
+    border: 1px solid var(--stone-light);
+    padding: 1.5rem;
+    width: 180px;
+  }
+  .badge-number {
+    font-family: var(--font-serif);
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1;
+  }
+  .badge-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-top: 0.5rem;
+  }
+ 
+  /* ── VALUES ── */
+  .values {
+    background: var(--charcoal);
+    padding: 7rem 5rem;
+  }
+  .values-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+  .values-header .section-label { color: var(--sage-light); }
+  .values-header .section-title { color: var(--cream); }
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .value-item {
+    background: var(--charcoal);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: background var(--transition);
+  }
+  .value-item:hover { background: rgba(255,255,255,0.04); }
+  .value-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .value-title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .value-desc {
+    font-size: 0.8rem;
+    color: rgba(200,195,190,0.6);
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+  }
+ 
+  /* ── TREATMENTS ── */
+  .treatments {
+    padding: 9rem 5rem;
+    background: var(--warm-white);
+  }
+  .treatments-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 5rem;
+    gap: 2rem;
+  }
+  .treatments-intro { max-width: 520px; }
+  .treatment-link-all {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bark);
+    text-decoration: none;
+    border-bottom: 1px solid var(--blush-deep);
+    padding-bottom: 2px;
+    white-space: nowrap;
+    transition: color var(--transition);
+    flex-shrink: 0;
+  }
+  .treatment-link-all:hover { color: var(--charcoal); }
+  .treatments-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .treatment-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+  }
+  .treatment-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .treatment-card:hover img { transform: scale(1.06); }
+  .treatment-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(44,40,35,0.75) 0%, transparent 50%);
+    transition: background var(--transition);
+  }
+  .treatment-card:hover .treatment-overlay {
+    background: linear-gradient(to top, rgba(44,40,35,0.85) 0%, rgba(44,40,35,0.15) 60%);
+  }
+  .treatment-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+  }
+  .treatment-name {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+  .treatment-sub {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(250,248,245,0.65);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all var(--transition);
+  }
+  .treatment-card:hover .treatment-sub {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .treatment-featured {
+    grid-column: span 2;
+    aspect-ratio: auto;
+    min-height: 400px;
+  }
+ 
+  /* ── FEATURED TREATMENT ── */
+  .featured-treatment {
+    background: var(--cream);
+    padding: 7rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .featured-img-wrap {
+    position: relative;
+  }
+  .featured-img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    display: block;
+  }
+  .featured-tag {
+    position: absolute;
+    top: 2rem;
+    right: -1.5rem;
+    background: var(--sage);
+    color: var(--warm-white);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+  .price-display {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .price-now {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--charcoal);
+  }
+  .price-was {
+    font-size: 1.1rem;
+    color: var(--stone);
+    text-decoration: line-through;
+  }
+  .price-duration {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--stone);
+    margin-top: -1rem;
+    margin-bottom: 1.5rem;
+  }
+ 
+  /* ── SHOP ── */
+  .shop {
+    padding: 9rem 5rem;
+    background: var(--warm-white);
+  }
+  .shop-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    margin-bottom: 5rem;
+  }
+  .brands-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 2rem 0;
+  }
+  .brand-pill {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--bark);
+    background: var(--blush);
+    background: rgba(201,164,138,0.18);
+    border: 1px solid var(--blush-deep);
+    padding: 0.4rem 1rem;
+  }
+  .shop-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .shop-img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    display: block;
+  }
+  .shop-img:first-child {
+    aspect-ratio: 1/1.3;
+    grid-row: span 2;
+    align-self: start;
+  }
+ 
+  /* ── REVIEWS ── */
+  .reviews {
+    background: var(--sage);
+    padding: 7rem 5rem;
+    overflow: hidden;
+  }
+  .reviews-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .reviews-header .section-label { color: var(--sage-light); }
+  .reviews-header .section-title { color: var(--warm-white); }
+  .reviews-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .review-card {
+    background: rgba(250,248,245,0.1);
+    border: 1px solid rgba(250,248,245,0.2);
+    padding: 2.5rem;
+    transition: background var(--transition);
+  }
+  .review-card:hover { background: rgba(250,248,245,0.15); }
+  .review-stars {
+    color: var(--blush);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.5rem;
+  }
+  .review-text {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--warm-white);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .review-author {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(250,248,245,0.55);
+  }
+  .reviews-footer {
+    text-align: center;
+    margin-top: 3.5rem;
+  }
+  .reviews-count {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(250,248,245,0.7);
+  }
+ 
+  /* ── EXPERIENCE ── */
+  .experience {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 70vh;
+  }
+  .experience-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+  .experience-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .experience-content {
+    background: var(--cream);
+    padding: 6rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .experience-quote {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--charcoal);
+    line-height: 1.6;
+    border-left: 2px solid var(--sage);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+ 
+  /* ── VISIT ── */
+  .visit {
+    padding: 9rem 5rem;
+    background: var(--warm-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: start;
+  }
+  .hours-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+  }
+  .hours-table tr {
+    border-bottom: 1px solid var(--stone-light);
+  }
+  .hours-table td {
+    padding: 0.85rem 0;
+    font-size: 0.9rem;
+  }
+  .hours-table td:first-child { color: var(--stone); }
+  .hours-table td:last-child { text-align: right; font-weight: 400; }
+  .contact-details {
+    margin-top: 2rem;
+  }
+  .contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--stone);
+  }
+  .contact-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone);
+    min-width: 70px;
+    padding-top: 2px;
+  }
+  .contact-value {
+    color: var(--charcoal);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+  .contact-value:hover { color: var(--sage-dark); }
+  .map-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--cream);
+    border: 1px solid var(--stone-light);
+    overflow: hidden;
+    position: relative;
+  }
+  .map-placeholder iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+  .map-overlay-pin {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+ 
+  /* ── CONTACT FORM ── */
+  .contact {
+    background: var(--charcoal);
+    padding: 7rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: start;
+  }
+  .contact .section-label { color: var(--sage-light); }
+  .contact .section-title { color: var(--cream); }
+  .contact .section-body { color: rgba(200,195,190,0.65); }
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  .form-label {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(200,195,190,0.5);
+    margin-bottom: 0.5rem;
+  }
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--cream);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 300;
+    padding: 0.9rem 1rem;
+    outline: none;
+    transition: border-color var(--transition);
+    -webkit-appearance: none;
+  }
+  .form-select { cursor: pointer; }
+  .form-select option { background: var(--charcoal); color: var(--cream); }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--sage);
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(200,195,190,0.3); }
+  .form-textarea { resize: vertical; min-height: 120px; }
+  .form-submit {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    background: var(--cream);
+    border: none;
+    padding: 1rem 2.2rem;
+    cursor: pointer;
+    transition: all var(--transition);
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover {
+    background: var(--sage);
+    color: var(--warm-white);
+  }
+ 
+  /* ── NEWSLETTER ── */
+  .newsletter {
+    background: var(--blush);
+    padding: 5rem;
+    text-align: center;
+  }
+  .newsletter .section-label { color: var(--bark); }
+  .newsletter .section-title { color: var(--charcoal); font-size: 2.2rem; margin-bottom: 0.75rem; }
+  .newsletter .section-body { color: var(--bark-light); max-width: 400px; margin: 0 auto 2rem; }
+  .newsletter-form {
+    display: flex;
+    max-width: 460px;
+    margin: 0 auto;
+    gap: 0;
+  }
+  .newsletter-input {
+    flex: 1;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(201,164,138,0.5);
+    border-right: none;
+    padding: 0.9rem 1.2rem;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 300;
+    outline: none;
+    color: var(--charcoal);
+  }
+  .newsletter-input::placeholder { color: var(--bark-light); }
+  .newsletter-btn {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--charcoal);
+    color: var(--cream);
+    border: none;
+    padding: 0.9rem 1.5rem;
+    cursor: pointer;
+    transition: background var(--transition);
+    white-space: nowrap;
+  }
+  .newsletter-btn:hover { background: var(--bark); }
+ 
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    padding: 4rem 5rem 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+  }
+  .footer-brand {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--cream);
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+  }
+  .footer-tagline {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: rgba(200,195,190,0.5);
+    line-height: 1.7;
+    max-width: 260px;
+  }
+  .footer-heading {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sage-light);
+    margin-bottom: 1.2rem;
+  }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.6rem; }
+  .footer-links a {
+    font-size: 0.85rem;
+    color: rgba(200,195,190,0.55);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(200,195,190,0.55);
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: all var(--transition);
+  }
+  .social-link:hover {
+    border-color: var(--sage);
+    color: var(--sage-light);
+    background: rgba(138,158,135,0.1);
+  }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(200,195,190,0.3);
+  }
+ 
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+ 
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    nav.scrolled { padding: 0.8rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero-content { padding: 0 1.5rem 4rem; }
+    .philosophy { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+    .philosophy-badge { display: none; }
+    .values { padding: 5rem 1.5rem; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+    .treatments { padding: 5rem 1.5rem; }
+    .treatments-header { flex-direction: column; align-items: flex-start; }
+    .treatments-grid { grid-template-columns: 1fr 1fr; }
+    .treatment-featured { grid-column: span 2; }
+    .featured-treatment { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+    .featured-tag { display: none; }
+    .shop { padding: 5rem 1.5rem; }
+    .shop-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .reviews { padding: 5rem 1.5rem; }
+    .reviews-track { grid-template-columns: 1fr; }
+    .experience { grid-template-columns: 1fr; }
+    .experience-images { grid-template-columns: 1fr 1fr; height: 300px; }
+    .experience-content { padding: 4rem 1.5rem; }
+    .visit { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+    .contact { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+    .newsletter { padding: 5rem 1.5rem; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-input { border-right: 1px solid rgba(201,164,138,0.5); border-bottom: none; }
+    footer { padding: 4rem 1.5rem 2rem; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+ 
+  @media (max-width: 600px) {
+    .values-grid { grid-template-columns: 1fr; }
+    .treatments-grid { grid-template-columns: 1fr; }
+    .treatment-featured { grid-column: span 1; }
+    .footer-top { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Beautiful Betty</a>
+  <ul class="nav-links">
+    <li><a href="#philosophy">About</a></li>
+    <li><a href="#treatments">Treatments</a></li>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#visit">Visit</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-book">Book a Treatment</a>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-img" 
+    src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1800&q=80&auto=format&fit=crop" 
+    alt="Luxury beauty salon treatment" 
+    loading="eager">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Hexham's Ethical Beauty Destination</p>
+    <h1 class="hero-title">Beautiful<br><em>Betty</em></h1>
+    <p class="hero-tagline">Indulge your senses in our treatments — inspired by nature, beautifully considered, and made for you.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Book Your Treatment</a>
+      <a href="#philosophy" class="btn-ghost">Our Story</a>
+    </div>
+  </div>
+</section>
+ 
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-inner">
+    <span class="marquee-item"><span class="marquee-dot"></span> 100% Cruelty-Free</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Vegan Friendly</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> British Artisan Brands</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Zero Plastic Where Possible</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Green Energy</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> 98% Salon Waste Recycled</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Sustainable Beauty Movement</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Eco-Conscious</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> 100% Cruelty-Free</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Vegan Friendly</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> British Artisan Brands</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Zero Plastic Where Possible</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Green Energy</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> 98% Salon Waste Recycled</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Sustainable Beauty Movement</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Eco-Conscious</span>
+  </div>
+</div>
+ 
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <div class="philosophy-text">
+    <p class="section-label reveal">Our Philosophy</p>
+    <h2 class="section-title reveal reveal-delay-1">An <em>urban retreat</em><br>in the heart<br>of Hexham</h2>
+    <p class="section-body reveal reveal-delay-2">Founded by Hayley Stokoe in 2015, Beautiful Betty is Hexham's first ethical, sustainable and conscious beauty salon and beauty shop — housed in a beautiful 3-storey listed building just steps from the town centre.</p>
+    <p class="section-body reveal reveal-delay-2">We believe beauty should never cost the earth. Every product we stock, every treatment we offer, and every decision we make is guided by our commitment to conscious beauty — cruelty-free, eco-friendly, and proudly independent.</p>
+    <p class="section-body reveal reveal-delay-3">Step inside and discover neutral tones, leafy green plants, natural colours and wood finishes — a space designed for calm, tranquillity, and genuine human connection. Our team of highly motivated, professional women are here for you.</p>
+    <a href="#contact" class="btn-primary reveal reveal-delay-4" style="display:inline-block; margin-top: 1rem; color: var(--charcoal); border: 1px solid var(--stone-light); text-decoration: none; background: transparent; transition: all 0.4s ease; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2.2rem;" onmouseover="this.style.background='var(--charcoal)'; this.style.color='var(--cream)'" onmouseout="this.style.background='transparent'; this.style.color='var(--charcoal)'">Book an Appointment</a>
+  </div>
+  <div class="philosophy-image-wrap reveal">
+    <img class="philosophy-img" 
+      src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=900&q=80&auto=format&fit=crop" 
+      alt="Beautiful Betty salon interior">
+    <div class="philosophy-badge">
+      <div class="badge-number">2015</div>
+      <div class="badge-text">Est. in Hexham<br>Northumberland</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- VALUES -->
+<section class="values">
+  <div class="values-header">
+    <p class="section-label reveal">What We Stand For</p>
+    <h2 class="section-title reveal reveal-delay-1">Beauty that is <em>kind</em><br>to people & planet</h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-item reveal">
+      <div class="value-icon">🌿</div>
+      <div class="value-title">Cruelty-Free</div>
+      <div class="value-desc">100% cruelty-free treatments and products — always</div>
+    </div>
+    <div class="value-item reveal reveal-delay-1">
+      <div class="value-icon">🌱</div>
+      <div class="value-title">Vegan Friendly</div>
+      <div class="value-desc">A wide range of fully vegan treatments and products</div>
+    </div>
+    <div class="value-item reveal reveal-delay-2">
+      <div class="value-icon">🇬🇧</div>
+      <div class="value-title">British Artisan</div>
+      <div class="value-desc">Independent British brands to reduce our carbon footprint</div>
+    </div>
+    <div class="value-item reveal reveal-delay-1">
+      <div class="value-icon">♻️</div>
+      <div class="value-title">Zero Waste</div>
+      <div class="value-desc">98% of salon waste recycled; 100% of PPE responsibly disposed</div>
+    </div>
+    <div class="value-item reveal reveal-delay-2">
+      <div class="value-icon">⚡</div>
+      <div class="value-title">Green Energy</div>
+      <div class="value-desc">Powered by renewable energy throughout</div>
+    </div>
+    <div class="value-item reveal reveal-delay-3">
+      <div class="value-icon">🌍</div>
+      <div class="value-title">Conscious Beauty</div>
+      <div class="value-desc">Part of the sustainable beauty movement — making change together</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- TREATMENTS -->
+<section class="treatments" id="treatments">
+  <div class="treatments-header">
+    <div class="treatments-intro">
+      <p class="section-label reveal">Our Treatments</p>
+      <h2 class="section-title reveal reveal-delay-1">Rituals for <em>every</em><br>sense</h2>
+    </div>
+    <a href="#contact" class="treatment-link-all reveal">View Full Menu →</a>
+  </div>
+ 
+  <div class="treatments-grid">
+    <div class="treatment-card treatment-featured reveal">
+      <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=900&q=80&auto=format&fit=crop" alt="Facial treatments">
+      <div class="treatment-overlay"></div>
+      <div class="treatment-info">
+        <div class="treatment-name">Skin Rituals<br>&amp; Facials</div>
+        <div class="treatment-sub">Medik8 · Signature · Advanced Peels</div>
+      </div>
+    </div>
+ 
+    <div class="treatment-card reveal reveal-delay-1">
+      <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80&auto=format&fit=crop" alt="Massage therapy">
+      <div class="treatment-overlay"></div>
+      <div class="treatment-info">
+        <div class="treatment-name">Massage &amp;<br>Body</div>
+        <div class="treatment-sub">Relaxation · Hot Stone · Deep Tissue</div>
+      </div>
+    </div>
+ 
+    <div class="treatment-card reveal">
+      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&auto=format&fit=crop" alt="Lash and brow treatments">
+      <div class="treatment-overlay"></div>
+      <div class="treatment-info">
+        <div class="treatment-name">Lashes &amp;<br>Brows</div>
+        <div class="treatment-sub">Lash Lift · Extensions · Tinting</div>
+      </div>
+    </div>
+ 
+    <div class="treatment-card reveal reveal-delay-1">
+      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&auto=format&fit=crop&crop=right" alt="Nail treatments">
+      <div class="treatment-overlay"></div>
+      <div class="treatment-info">
+        <div class="treatment-name">Hands &amp;<br>Feet</div>
+        <div class="treatment-sub">Manicure · Pedicure · Nail Art</div>
+      </div>
+    </div>
+ 
+    <div class="treatment-card reveal reveal-delay-2">
+      <img src="https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=600&q=80&auto=format&fit=crop" alt="Makeup services">
+      <div class="treatment-overlay"></div>
+      <div class="treatment-info">
+        <div class="treatment-name">Makeup &amp;<br>Waxing</div>
+        <div class="treatment-sub">Bridal · Occasion · Waxing · Tanning</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FEATURED TREATMENT -->
+<section class="featured-treatment">
+  <div class="featured-img-wrap reveal">
+    <img class="featured-img" 
+      src="https://images.unsplash.com/photo-1552693673-1bf958298935?w=900&q=80&auto=format&fit=crop" 
+      alt="English Rose Gold Facial">
+    <div class="featured-tag">Seasonal Offer</div>
+  </div>
+  <div class="reveal reveal-delay-2">
+    <p class="section-label">Featured Treatment</p>
+    <h2 class="section-title">English Rose<br><em>Gold Facial</em></h2>
+    <div class="price-display">
+      <span class="price-now">£40</span>
+      <span class="price-was">£60</span>
+    </div>
+    <p class="price-duration">60 minutes · Save £20</p>
+    <p class="section-body">A deeply luxurious facial experience drawing on the finest botanical extracts, designed to restore radiance and leave your skin luminous. Beautifully considered, made for you.</p>
+    <p class="section-body">This signature treatment is our gift to you — premium care at an exceptional value. One of our most beloved experiences, now more accessible than ever.</p>
+    <a href="#contact" class="btn-primary" style="display:inline-block; margin-top: 1.5rem; color: var(--charcoal); border: 1px solid var(--charcoal); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2.2rem; transition: all 0.4s ease;" onmouseover="this.style.background='var(--charcoal)'; this.style.color='var(--cream)'" onmouseout="this.style.background='transparent'; this.style.color='var(--charcoal)'">Book This Treatment</a>
+  </div>
+</section>
+ 
+<!-- SHOP -->
+<section class="shop" id="shop">
+  <div class="shop-inner">
+    <div>
+      <p class="section-label reveal">The Beauty Shop</p>
+      <h2 class="section-title reveal reveal-delay-1">Best of British.<br><em>Kind to the planet.</em></h2>
+      <p class="section-body reveal reveal-delay-2">Our shop is a carefully curated collection of beauty and lifestyle brands — all proudly independent, cruelty-free, and consciously sustainable. We buy British to reduce our carbon footprint and champion artisan makers who share our values.</p>
+      <p class="section-body reveal reveal-delay-2">From advanced skincare to award-winning handmade soaps, homeware, gifts and accessories — every product earns its place on our shelves.</p>
+      <div class="brands-list reveal reveal-delay-3">
+        <span class="brand-pill">Medik8</span>
+        <span class="brand-pill">Willowberry</span>
+        <span class="brand-pill">BeautyPro</span>
+        <span class="brand-pill">dook Salt Soap</span>
+        <span class="brand-pill">Delilah Cosmetics</span>
+        <span class="brand-pill">Natural Spa Factory</span>
+        <span class="brand-pill">Grace &amp; Green</span>
+        <span class="brand-pill">Plenaire</span>
+      </div>
+      <a href="https://beautifulbetty.com/collections/all" target="_blank" rel="noopener" style="display:inline-block; margin-top:0.5rem; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--bark); border-bottom:1px solid var(--blush-deep); padding-bottom:2px; text-decoration:none;">Shop Online →</a>
+    </div>
+    <div class="shop-images reveal reveal-delay-2">
+      <img class="shop-img" src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&q=80&auto=format&fit=crop" alt="Beauty products">
+      <img class="shop-img" src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&q=80&auto=format&fit=crop" alt="Skincare products">
+      <img class="shop-img" src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&q=80&auto=format&fit=crop" alt="Natural beauty products">
+    </div>
+  </div>
+</section>
+ 
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="reviews-header">
+    <p class="section-label reveal">What Our Clients Say</p>
+    <h2 class="section-title reveal reveal-delay-1" style="color:var(--warm-white)">Loved by <em>Hexham</em></h2>
+  </div>
+  <div class="reviews-track">
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Absolutely love going to Beautiful Betty — all the staff are so lovely and amazing at what they do. Come out feeling refreshed and happy every time."</p>
+      <div class="review-author">Verified Client · Facebook</div>
+    </div>
+    <div class="review-card reveal reveal-delay-1">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Every time I visit this salon it never fails to amaze me! Lovely, friendly staff, amazing selection of treatments and products, so relaxing and calm."</p>
+      <div class="review-author">Verified Client · Yell</div>
+    </div>
+    <div class="review-card reveal reveal-delay-2">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"A beautiful salon offering the most luxurious treatments. I love that their products are ethical and sustainable. Their shop is wonderful too."</p>
+      <div class="review-author">Verified Client · Facebook</div>
+    </div>
+  </div>
+  <div class="reviews-footer reveal">
+    <p class="reviews-count">74 Facebook reviews — 100% recommended</p>
+  </div>
+</section>
+ 
+<!-- EXPERIENCE -->
+<section class="experience">
+  <div class="experience-images">
+    <img class="experience-img" src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=600&q=80&auto=format&fit=crop" alt="Salon interior">
+    <img class="experience-img" src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&q=80&auto=format&fit=crop&crop=top" alt="Beauty products on display">
+    <img class="experience-img" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80&auto=format&fit=crop&crop=bottom" alt="Treatment room">
+    <img class="experience-img" src="https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=600&q=80&auto=format&fit=crop&crop=face" alt="Beautician at work">
+  </div>
+  <div class="experience-content">
+    <p class="section-label reveal">The Betty Experience</p>
+    <h2 class="section-title reveal reveal-delay-1">A <em>space</em> designed<br>for you</h2>
+    <blockquote class="experience-quote reveal reveal-delay-2">
+      "Understated luxury, calm and tranquility set within a characterful listed building, nestled in the centre of beautiful Hexham."
+    </blockquote>
+    <p class="section-body reveal reveal-delay-3">Our 3-storey home at 3 St Mary's Chare is a place of genuine calm — neutral tones, leafy green plants, natural wood finishes, and a team who truly care. You'll leave feeling looked after, refreshed, and a little more yourself.</p>
+    <p class="section-body reveal reveal-delay-3">Named Trader of the Week by the Hexham Community Partnership in 2024, we're proud to be part of this extraordinary town.</p>
+  </div>
+</section>
+ 
+<!-- VISIT -->
+<section class="visit" id="visit">
+  <div>
+    <p class="section-label reveal">Opening Hours</p>
+    <h2 class="section-title reveal reveal-delay-1">Come &amp; <em>see us</em></h2>
+    <table class="hours-table reveal reveal-delay-2">
+      <tr><td>Monday</td><td>Closed</td></tr>
+      <tr><td>Tuesday</td><td>9:00am – 5:30pm</td></tr>
+      <tr><td>Wednesday</td><td>9:00am – 5:30pm</td></tr>
+      <tr><td>Thursday</td><td>9:00am – 7:00pm</td></tr>
+      <tr><td>Friday</td><td>9:00am – 5:30pm</td></tr>
+      <tr><td>Saturday</td><td>9:00am – 4:00pm</td></tr>
+      <tr><td>Sunday</td><td>Closed</td></tr>
+    </table>
+    <div class="contact-details reveal reveal-delay-3">
+      <div class="contact-row">
+        <span class="contact-label">Address</span>
+        <span>3 St Mary's Chare, Hexham, NE46 1NQ</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Phone</span>
+        <a class="contact-value" href="tel:01434610077">01434 610077</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Mobile</span>
+        <a class="contact-value" href="tel:07584251784">07584 251784</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Email</span>
+        <a class="contact-value" href="mailto:hello@beautifulbetty.co.uk">hello@beautifulbetty.co.uk</a>
+      </div>
+    </div>
+  </div>
+  <div class="reveal reveal-delay-2">
+    <div class="map-placeholder">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2296.8539271396054!2d-2.1003!3d54.9727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487d8b1a9a8a8a8b%3A0x8a8a8a8a8a8a8a8a!2s3+St+Mary's+Chare%2C+Hexham+NE46+1NQ!5e0!3m2!1sen!2suk!4v1" 
+        title="Beautiful Betty location map"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <p style="font-size:0.8rem; color:var(--stone); margin-top:1rem; line-height:1.6;">Nestled in the heart of Hexham town centre, a short walk from the Market Place. Free parking nearby at Tyne Green and Wentworth car parks.</p>
+  </div>
+</section>
+ 
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div>
+    <p class="section-label reveal">Get in Touch</p>
+    <h2 class="section-title reveal reveal-delay-1">Book your<br><em>treatment</em></h2>
+    <p class="section-body reveal reveal-delay-2">Whether you'd like to book a treatment, ask about a product, or simply find out more — we'd love to hear from you. Our team will be in touch to confirm your appointment within 24 hours.</p>
+    <p class="section-body reveal reveal-delay-2">You can also reach us directly on <a href="tel:01434610077" style="color:var(--sage-light);">01434 610077</a> or drop us an email at <a href="mailto:hello@beautifulbetty.co.uk" style="color:var(--sage-light);">hello@beautifulbetty.co.uk</a>.</p>
+    <div style="margin-top:2.5rem;">
+      <a href="https://www.facebook.com/Beautiful.Betty.Hexham/" target="_blank" rel="noopener" style="display:inline-block; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--sage-light); border:1px solid rgba(200,213,197,0.25); padding:0.7rem 1.4rem; text-decoration:none; margin-right:1rem; transition:all 0.4s ease;" onmouseover="this.style.borderColor='var(--sage-light)'" onmouseout="this.style.borderColor='rgba(200,213,197,0.25)'">Facebook</a>
+      <a href="https://www.instagram.com/beautiful.betty/" target="_blank" rel="noopener" style="display:inline-block; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--sage-light); border:1px solid rgba(200,213,197,0.25); padding:0.7rem 1.4rem; text-decoration:none; transition:all 0.4s ease;" onmouseover="this.style.borderColor='var(--sage-light)'" onmouseout="this.style.borderColor='rgba(200,213,197,0.25)'">Instagram</a>
+    </div>
+  </div>
+  <div class="reveal reveal-delay-2">
+    <div class="form-group">
+      <label class="form-label" for="name">Your Name</label>
+      <input class="form-input" type="text" id="name" name="name" placeholder="First and last name" autocomplete="name">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="email">Email Address</label>
+      <input class="form-input" type="email" id="email" name="email" placeholder="hello@you.com" autocomplete="email">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="phone">Phone Number (optional)</label>
+      <input class="form-input" type="tel" id="phone" name="phone" placeholder="Your phone number" autocomplete="tel">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="treatment">I'm interested in…</label>
+      <select class="form-select" id="treatment" name="treatment">
+        <option value="">Select a treatment category</option>
+        <option>Facials &amp; Skin Treatments</option>
+        <option>Medik8 12 Weeks to Wow Programme</option>
+        <option>Massage &amp; Body Treatments</option>
+        <option>Lashes &amp; Brows</option>
+        <option>Manicure &amp; Pedicure</option>
+        <option>Waxing &amp; Tinting</option>
+        <option>Makeup Services</option>
+        <option>Skin Needling</option>
+        <option>English Rose Gold Facial (Special Offer)</option>
+        <option>Product Advice / Shop Enquiry</option>
+        <option>General Enquiry</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="message">Message</label>
+      <textarea class="form-textarea" id="message" name="message" placeholder="Tell us anything — preferred dates, any questions, or just say hello…"></textarea>
+    </div>
+    <button class="form-submit" type="button" onclick="this.textContent='Message Sent — Thank You ✓'; this.style.background='var(--sage)'; this.style.color='var(--warm-white)'">Send Enquiry</button>
+  </div>
+</section>
+ 
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <p class="section-label">Stay Connected</p>
+  <h2 class="section-title">Join the Beautiful Betty <em>community</em></h2>
+  <p class="section-body">Seasonal treatments, new arrivals, and exclusive offers — delivered to your inbox, never too often.</p>
+  <div class="newsletter-form">
+    <input class="newsletter-input" type="email" placeholder="Your email address" autocomplete="email">
+    <button class="newsletter-btn" type="button">Subscribe</button>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Beautiful Betty</div>
+      <p class="footer-tagline">"Indulge your senses in our treatments — inspired by nature, beautifully considered, and made for you."</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/Beautiful.Betty.Hexham/" target="_blank" rel="noopener" class="social-link" aria-label="Beautiful Betty on Facebook">f</a>
+        <a href="https://www.instagram.com/beautiful.betty/" target="_blank" rel="noopener" class="social-link" aria-label="Beautiful Betty on Instagram" style="font-style:italic;">ig</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-heading">Treatments</p>
+      <ul class="footer-links">
+        <li><a href="#treatments">Facials &amp; Skin</a></li>
+        <li><a href="#treatments">Massage &amp; Body</a></li>
+        <li><a href="#treatments">Lashes &amp; Brows</a></li>
+        <li><a href="#treatments">Hands &amp; Feet</a></li>
+        <li><a href="#treatments">Waxing &amp; Tinting</a></li>
+        <li><a href="#treatments">Makeup</a></li>
+        <li><a href="#treatments">Skin Needling</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-heading">The Shop</p>
+      <ul class="footer-links">
+        <li><a href="https://beautifulbetty.com/collections/all" target="_blank" rel="noopener">All Products</a></li>
+        <li><a href="https://beautifulbetty.com/pages/shop-by-brand" target="_blank" rel="noopener">Shop by Brand</a></li>
+        <li><a href="https://beautifulbetty.com/collections/gift-voucher" target="_blank" rel="noopener">Gift Vouchers</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-heading">Visit Us</p>
+      <ul class="footer-links">
+        <li><a href="https://maps.google.com/?q=3+St+Mary%27s+Chare+Hexham+NE46+1NQ" target="_blank" rel="noopener">3 St Mary's Chare</a></li>
+        <li><a href="https://maps.google.com/?q=3+St+Mary%27s+Chare+Hexham+NE46+1NQ" target="_blank" rel="noopener">Hexham, NE46 1NQ</a></li>
+        <li><a href="tel:01434610077">01434 610077</a></li>
+        <li><a href="mailto:hello@beautifulbetty.co.uk">hello@beautifulbetty.co.uk</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Beautiful Betty. All rights reserved. Hexham, Northumberland.</p>
+    <p class="footer-copy">Hexham's first ethical, sustainable &amp; conscious beauty salon.</p>
+  </div>
+</footer>
+ 
+<script>
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+ 
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
